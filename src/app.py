@@ -7,7 +7,7 @@ import os
 # Function to load the trained model
 @st.cache
 def load_model():
-    model_path = os.path.join("..", "models", "decision_tree_model.pkl")
+    model_path = "./models/decision_tree_model.pkl"  # Corrected model path
 
     with open(model_path, 'rb') as f:
         model = pickle.load(f)
@@ -25,8 +25,8 @@ st.sidebar.header('User Input Features')
 # Function to get user input
 def get_user_input():
     age = st.sidebar.slider('Age', 29, 77, 50)
-    sex = st.sidebar.selectbox('Sex', ['male', 'female'])
-    cp = st.sidebar.selectbox('Chest Pain Type', [0, 1, 2, 3])
+    sex = st.sidebar.selectbox('Sex', ['Male', 'Female'])
+    cp = st.sidebar.selectbox('Chest Pain Type', ['Typical Angina', 'Atypical Angina', 'Non-anginal Pain', 'Asymptomatic'])
     trestbps = st.sidebar.slider('Resting Blood Pressure (mm Hg)', 94, 200, 130)
     chol = st.sidebar.slider('Serum Cholesterol (mg/dl)', 126, 564, 240)
     thalach = st.sidebar.slider('Maximum Heart Rate Achieved (bpm)', 71, 202, 150)
@@ -34,7 +34,7 @@ def get_user_input():
     ca = st.sidebar.selectbox('Number of Major Vessels', [0, 1, 2, 3])
     
     # Map sex to numerical values
-    sex_mapping = {'male': 1, 'female': 0}
+    sex_mapping = {'Male': 1, 'Female': 0}
     sex_val = sex_mapping[sex]
     
     # Create a dictionary of user input features
